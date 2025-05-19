@@ -49,7 +49,13 @@
       color: #fff;
       background-color: #dc3545;
     }
-
+    .gallery-item {
+      display: none; /* Default hidden */
+    }
+    
+    .gallery-item.visible {
+      display: block; /* Only show those with 'visible' */
+    }
     /* Card UI Improvement */
     .gallery-item .card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -261,9 +267,9 @@
             <!-- <a href="form.php" class="btn-get-started scrollto ">Form Peminjaman</a> -->
             <!-- <div class="m-2"></div> -->
             <a href="https://www.spatial.io/s/META-TEKNO-68259e59f734432bbfb0ad1e?share=647189754963369920"
-            target="_blank" class="btn-get-started scrollto">
-            Explore Dunia 3D
-          </a>
+              target="_blank" class="btn-get-started scrollto">
+              Explore Dunia 3D
+            </a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
@@ -275,49 +281,57 @@
   <!-- End Hero -->
 
   <main id="main">
-   <!-- ======= About Us Section ======= -->
-   <section id="about" class="about py-5 bg-light">
-    <div class="container" data-aos="fade-up">
-      <div class="section-title">
-        <h2 class="fw-bold">About Us</h2>
-        <!-- <p class="text-muted fs-5">Jelajahi Masa Depan Kampus dalam Dunia Virtual</p> -->
-      </div>
-  
-      <div class="row align-items-center g-4">
-        <!-- Ilustrasi / Icon / Gambar -->
-        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-          <img src="assets/img/gallery/tekno5.png" class="img-fluid rounded-4 shadow" alt="Virtual Campus Illustration" />
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about py-5 bg-light">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2 class="fw-bold">About Us</h2>
+          <!-- <p class="text-muted fs-5">Jelajahi Masa Depan Kampus dalam Dunia Virtual</p> -->
         </div>
-  
-        <!-- Konten teks -->
-        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
-          <div class="p-3">
-            <h4 class="fw-semibold mb-3">Apa itu <span class="text-danger">Metatekno?</span></h4>
-            <p class="text-justify">
-              <strong>Metatekno</strong> adalah platform interaktif berbasis <em>metaverse</em> yang menghadirkan eksplorasi kampus masa depan secara virtual dan imersif. Kami menggabungkan teknologi 3D dan realitas digital untuk pengalaman belajar tanpa batas.
-            </p>
-            <ul class="list-unstyled">
-              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>Metaschool:</strong> Pusat pembelajaran virtual</li>
-              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>Metaeducation:</strong> Interaksi edukatif digital</li>
-              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>V-Commerce:</strong> Simulasi aktivitas bisnis virtual</li>
-              <li><i class="bi bi-check-circle text-success me-2"></i> <strong>Metacampus:</strong> Ruang kreatif & pembelajaran virtual</li>
-            </ul>
-            <p class="mt-3">
-              Bersama Metatekno, kami membuka gerbang transformasi digital dunia pendidikan. Masa depan sudah dimulai — dan <strong>Anda bagian dari perjalanan ini.</strong>
-            </p>
+
+        <div class="row align-items-center g-4">
+          <!-- Ilustrasi / Icon / Gambar -->
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+            <img src="assets/img/gallery/tekno5.png" class="img-fluid rounded-4 shadow"
+              alt="Virtual Campus Illustration" />
+          </div>
+
+          <!-- Konten teks -->
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="p-3">
+              <h4 class="fw-semibold mb-3">Apa itu <span class="text-danger">Metatekno?</span></h4>
+              <p class="text-justify">
+                <strong>Metatekno</strong> adalah platform interaktif berbasis <em>metaverse</em> yang menghadirkan
+                eksplorasi kampus masa depan secara virtual dan imersif. Kami menggabungkan teknologi 3D dan realitas
+                digital untuk pengalaman belajar tanpa batas.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>Metaschool:</strong> Pusat
+                  pembelajaran virtual</li>
+                <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>Metaeducation:</strong>
+                  Interaksi edukatif digital</li>
+                <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>V-Commerce:</strong>
+                  Simulasi aktivitas bisnis virtual</li>
+                <li><i class="bi bi-check-circle text-success me-2"></i> <strong>Metacampus:</strong> Ruang kreatif &
+                  pembelajaran virtual</li>
+              </ul>
+              <p class="mt-3">
+                Bersama Metatekno, kami membuka gerbang transformasi digital dunia pendidikan. Masa depan sudah dimulai
+                — dan <strong>Anda bagian dari perjalanan ini.</strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
+    </section>
+
     <!-- ======= Gedung Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Workspace</h2>
         </div>
-    
+
         <div class="row">
           <!-- Metaschool -->
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
@@ -330,9 +344,10 @@
               </p>
             </div>
           </div>
-    
+
           <!-- Metaeducation -->
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
+            data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-globe"></i></div>
               <h4><a href="#">Metaeducation</a></h4>
@@ -342,9 +357,10 @@
               </p>
             </div>
           </div>
-    
+
           <!-- V-Commerce -->
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+            data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-store-alt"></i></div>
               <h4><a href="#">V-Commerce</a></h4>
@@ -354,9 +370,10 @@
               </p>
             </div>
           </div>
-    
+
           <!-- Metacampus -->
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+            data-aos-delay="400">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-building"></i></div>
               <h4><a href="#">Metacampus</a></h4>
@@ -369,7 +386,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- End Gedung Section -->
     <section id="gallery" class="gallery bg-light py-5">
       <div class="container" data-aos="fade-up">
@@ -484,28 +501,28 @@
                 </div>
               </div>
             </div>
-        </div>
+          </div>
 
-        <div class="col-lg-4 col-md-6 gallery-item metacampus">
-          <div class="card border-0 shadow h-100">
-            <img src="assets/img/project/ruang-informasi.jpg" class="card-img-top" alt="Meta-Tekno" />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Ruang Informasi UTI</h5>
-              <p class="card-text text-muted">Learning space for future education</p>
-              <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
-                <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/teknokrat.glb"
-                  data-title="META-TEKNO" data-description="Learning space for future education"
-                  data-link="https://example.com/spatial-link" disabled>
-                  <i class="bx bx-plus me-1"></i> 3D Preview
-                </button>
-                <a href="https://www.spatial.io/s/Metaverse-Ruang-Informasi-UTI-65f5374c1a175fbb3aeb6354?share=2604339570336923574"
-                  target="_blank" class="btn btn-danger btn-sm">
-                  View in Spatial
-                </a>
+          <div class="col-lg-4 col-md-6 gallery-item metacampus">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/ruang-informasi.jpg" class="card-img-top" alt="Meta-Tekno" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Ruang Informasi UTI</h5>
+                <p class="card-text text-muted">Learning space for future education</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/teknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link" disabled>
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/Metaverse-Ruang-Informasi-UTI-65f5374c1a175fbb3aeb6354?share=2604339570336923574"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
           <!-- metaschool -->
           <div class="col-lg-4 col-md-6 gallery-item metaschool">
@@ -669,9 +686,10 @@
                     <i class="bx bx-plus me-1"></i> 3D Preview
                   </button>
                   <a href="https://www.spatial.io/s/WorkingSpace-64619e40f568057a578070f3?share=1220612384119031668"
-                  target="_blank" class="btn btn-danger btn-sm">
-                  View in Spatial
-                </a>                </div>
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -689,49 +707,10 @@
                     <i class="bx bx-plus me-1"></i> 3D Preview
                   </button>
                   <a href="https://www.spatial.io/s/Math-Bridge-66637fc9e4fe3927852def33?share=6070907678572552654"
-                  target="_blank" class="btn btn-danger btn-sm">
-                  View in Spatial
-                </a>                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 gallery-item metaeducation">
-            <div class="card border-0 shadow h-100">
-              <img src="assets/img/project/museum-lampung.jpg" class="card-img-top" alt="MetaEducation Space" />
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Museum Lampung</h5>
-                <p class="card-text text-muted">Metaeducation exploration zone</p>
-                <div class="mt-auto d-flex justify-content-between align-items-center">
-                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
-                    data-title="META-TEKNO" data-description="Learning space for future education"
-                    data-link="https://example.com/spatial-link" disabled>
-                    <i class="bx bx-plus me-1"></i> 3D Preview
-                  </button>
-                  <a href="https://www.spatial.io/s/Museum-Lampung-2024-66666a9e6f9abd268c6346d0?share=432555706488230980"
-                  target="_blank" class="btn btn-danger btn-sm">
-                  View in Spatial
-                </a>                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 gallery-item metaeducation">
-            <div class="card border-0 shadow h-100">
-              <img src="assets/img/project/rumah-adat.jpg" class="card-img-top" alt="MetaEducation Space" />
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Rumah Adat Lampung</h5>
-                <p class="card-text text-muted">Metaeducation exploration zone</p>
-                <div class="mt-auto d-flex justify-content-between align-items-center">
-                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
-                    data-title="META-TEKNO" data-description="Learning space for future education"
-                    data-link="https://example.com/spatial-link" disabled>
-                    <i class="bx bx-plus me-1"></i> 3D Preview
-                  </button>
-                  <a href="https://www.spatial.io/s/Rumah-Adat-Lampung-Pepadun-66bf59f20da08901e7e066bc"
-                  target="_blank" class="btn btn-danger btn-sm">
-                  View in Spatial
-                </a>                </div>
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -744,14 +723,15 @@
                 <p class="card-text text-muted">Metaeducation exploration zone</p>
                 <div class="mt-auto d-flex justify-content-between align-items-center">
                   <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
-                  data-title="META-TEKNO" data-description="Learning space for future education"
-                  data-link="https://example.com/spatial-link" disabled>
-                  <i class="bx bx-plus me-1"></i> 3D Preview
-                </button>
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link" disabled>
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
                   <a href="https://www.spatial.io/s/Pasar-Kreatif-dan-Seni-67569629bce99bc7f7b9241a?share=1789966570546314383"
-                  target="_blank" class="btn btn-danger btn-sm">
-                  View in Spatial
-                </a>                </div>
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -780,6 +760,27 @@
           <!-- v-commerce -->
           <div class="col-lg-4 col-md-6 gallery-item vcommerce">
             <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/museum-lampung.jpg" class="card-img-top" alt="MetaEducation Space" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Museum Lampung</h5>
+                <p class="card-text text-muted">Metaeducation exploration zone</p>
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link" disabled>
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/Museum-Lampung-2024-66666a9e6f9abd268c6346d0?share=432555706488230980"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item vcommerce">
+            <div class="card border-0 shadow h-100">
               <img src="assets/img/project/askha-jaya.jpg" class="card-img-top" alt="MetaEducation Space" />
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">Askha Jaya</h5>
@@ -798,7 +799,32 @@
               </div>
             </div>
           </div>
-      </div>
+          <div class="col-lg-4 col-md-6 gallery-item vcommerce">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/rumah-adat.jpg" class="card-img-top" alt="MetaEducation Space" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Rumah Adat Lampung</h5>
+                <p class="card-text text-muted">Metaeducation exploration zone</p>
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link" disabled>
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/Rumah-Adat-Lampung-Pepadun-66bf59f20da08901e7e066bc" target="_blank"
+                    class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="text-center mt-4">
+          <button id="loadMoreBtn" class="btn btn-outline-danger">Load More</button>
+        </div>
+        
     </section>
 
 
@@ -979,7 +1005,9 @@
           <div class="col-md-6">
             <h4>About Us</h4>
             <p>
-              Metatekno adalah platform interaktif berbasis metaverse yang menghadirkan eksplorasi kampus masa depan secara virtual dan imersif. Kami menggabungkan teknologi 3D dan realitas digital untuk pengalaman belajar tanpa batas.
+              Metatekno adalah platform interaktif berbasis metaverse yang menghadirkan eksplorasi kampus masa depan
+              secara virtual dan imersif. Kami menggabungkan teknologi 3D dan realitas digital untuk pengalaman belajar
+              tanpa batas.
             </p>
           </div>
           <div class="col-md-3">
@@ -1168,33 +1196,51 @@
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Init Isotope
       var iso = new Isotope('.gallery-container', {
         itemSelector: '.gallery-item',
         layoutMode: 'fitRows'
       });
-
-      // Filter items on button click
+  
       var filtersElem = document.querySelector('#gallery-filters');
       filtersElem.addEventListener('click', function (event) {
-        if (!matchesSelector(event.target, 'button')) {
-          return;
-        }
-
-        // remove active class from all buttons
+        if (!matchesSelector(event.target, 'button')) return;
+  
         var buttons = filtersElem.querySelectorAll('.nav-link');
-        buttons.forEach(function (btn) {
-          btn.classList.remove('active', 'bg-danger', 'text-white');
-        });
-
-        // add active class to clicked button
+        buttons.forEach(btn => btn.classList.remove('active', 'bg-danger', 'text-white'));
         event.target.classList.add('active', 'bg-danger', 'text-white');
-
+  
         var filterValue = event.target.getAttribute('data-filter');
         iso.arrange({ filter: filterValue });
       });
+  
+      const allItems = document.querySelectorAll('.gallery-item');
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+      let visibleCount = 6;
+  
+      function showItems() {
+        allItems.forEach((item, index) => {
+          if (index < visibleCount) {
+            item.classList.add('visible');
+          } else {
+            item.classList.remove('visible');
+          }
+        });
+        iso.arrange({ filter: '.visible' }); // hanya tampilkan yang .visible
+      }
+  
+      showItems(); // initial load
+  
+      loadMoreBtn.addEventListener('click', function () {
+        visibleCount += 6;
+        showItems();
+        if (visibleCount >= allItems.length) {
+          loadMoreBtn.style.display = 'none';
+        }
+      });
     });
   </script>
+  
+
 
 </body>
 
