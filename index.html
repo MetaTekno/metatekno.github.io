@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>MetaTekno</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="assets/img/meta-icon.png" rel="icon" />
+  <link href="assets/img/meta-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+  <script src="https://unpkg.com/matches-selector@2/matches-selector.js"></script>
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <style>
+    /* Gallery Filter Pills */
+    #gallery-filters .nav-link {
+      border-radius: 30px;
+      padding: 8px 20px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      color: #dc3545;
+      background-color: transparent;
+    }
+
+    #gallery-filters .nav-link.active,
+    #gallery-filters .nav-link:hover {
+      color: #fff;
+      background-color: #dc3545;
+    }
+
+    /* Card UI Improvement */
+    .gallery-item .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .gallery-item .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(220, 53, 69, 0.3);
+    }
+
+    .gallery-item .card-img-top {
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item .card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+
+    /* Tombol dalam Card */
+    .gallery-item .btn {
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+
+    .gallery-item .btn-danger {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    .gallery-item .btn-danger:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+
+    /* Card Title */
+    .gallery-item .card-title {
+      font-weight: 700;
+      color: #dc3545;
+      margin-bottom: 5px;
+    }
+
+    .gallery-item .card-text {
+      font-size: 14px;
+      color: #6c757d;
+    }
+
+    .gallery-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-img:hover .view-btn {
+      display: block;
+    }
+
+    #modelPopup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      position: relative;
+      /* Diperlukan untuk menempatkan tombol close secara absolut */
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 90%;
+      max-height: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    canvas#popup-canvas {
+      width: 600px;
+      height: 400px;
+      background: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    #popup-info {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    /* Tombol close jadi icon X */
+    #closePopup {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 36px;
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #closePopup:hover {
+      color: #dc3545;
+    }
+
+    /* GEDUNG */
+    .icon-box {
+      background: linear-gradient(145deg, #ffffff, #f0f0f0);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .icon-box:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, #f8f9fa, #e0e0e0);
+    }
+
+    .icon-box .icon {
+      background: transparent;
+      color: #fff;
+      font-size: 36px;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .icon-box:hover .icon {
+      background: transparent;
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .icon-box h4 a {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s;
+      text-decoration: none;
+    }
+
+    .icon-box h4 a:hover {
+      color: transparent;
+    }
+
+    .icon-box p {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto">
+        <a href="index.html"><img style="max-height: 45px" src="assets/img/metateknonobg.png" alt="" /></a>
+      </h1>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Project</a></li>
+          <li><a class="nav-link scrollto" href="#faqs">FaQs</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <!-- .navbar -->
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+          data-aos="fade-up" data-aos-delay="200">
+          <h1 class="text-bold text-danger">Future Digital Leaders</h1>
+          <h2>Metatekno Universitas Teknokrat Indonesia</h2>
+          <p>
+            Masuki dunia virtual kampus dan temukan ruangan futuristik untuk
+            mewujudkan inovasi, kolaborasi, dan kegiatan yang berdampak nyata
+            di era metaverse!
+          </p>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <!-- <a href="form.php" class="btn-get-started scrollto ">Form Peminjaman</a> -->
+            <!-- <div class="m-2"></div> -->
+            <a href="https://www.spatial.io/s/META-TEKNO-68259e59f734432bbfb0ad1e?share=647189754963369920"
+            target="_blank" class="btn-get-started scrollto">
+            Explore Dunia 3D
+          </a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="assets/teknofg2.png" class="img-fluid animated" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero -->
+
+  <main id="main">
+   <!-- ======= About Us Section ======= -->
+   <section id="about" class="about py-5 bg-light">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2 class="fw-bold">About Us</h2>
+        <!-- <p class="text-muted fs-5">Jelajahi Masa Depan Kampus dalam Dunia Virtual</p> -->
+      </div>
+  
+      <div class="row align-items-center g-4">
+        <!-- Ilustrasi / Icon / Gambar -->
+        <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+          <img src="assets/img/gallery/tekno5.png" class="img-fluid rounded-4 shadow" alt="Virtual Campus Illustration" />
+        </div>
+  
+        <!-- Konten teks -->
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+          <div class="p-3">
+            <h4 class="fw-semibold mb-3">Apa itu <span class="text-danger">Metatekno?</span></h4>
+            <p class="text-justify">
+              <strong>Metatekno</strong> adalah platform interaktif berbasis <em>metaverse</em> yang menghadirkan eksplorasi kampus masa depan secara virtual dan imersif. Kami menggabungkan teknologi 3D dan realitas digital untuk pengalaman belajar tanpa batas.
+            </p>
+            <ul class="list-unstyled">
+              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>Metaschool:</strong> Pusat pembelajaran virtual</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>Metaeducation:</strong> Interaksi edukatif digital</li>
+              <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i> <strong>V-Commerce:</strong> Simulasi aktivitas bisnis virtual</li>
+              <li><i class="bi bi-check-circle text-success me-2"></i> <strong>Metates:</strong> Ruang kreatif & pertunjukan digital</li>
+            </ul>
+            <p class="mt-3">
+              Bersama Metatekno, kami membuka gerbang transformasi digital dunia pendidikan. Masa depan sudah dimulai — dan <strong>Anda bagian dari perjalanan ini.</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    <!-- ======= Gedung Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Workspace</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-building"></i></div>
+              <h4><a href="">Metaschool</a></h4>
+              <p>
+                Metaschool adalah ruang pembelajaran virtual yang dirancang
+                untuk pengalaman belajar interaktif dan kolaboratif dalam
+                dunia metaverse.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
+            data-aos-delay="200">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-chip"></i></div>
+              <h4><a href="">Metaeducation</a></h4>
+              <p>
+                Metaeducation menghadirkan lingkungan edukatif digital tempat
+                pelajar dan pengajar dapat terhubung dalam ruang imersif 3D.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+            data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-cart-alt"></i></div>
+              <h4><a href="">V-Commerce</a></h4>
+              <p>
+                V-Commerce adalah simulasi pusat perdagangan virtual,
+                memungkinkan pengguna mengeksplorasi transaksi dan toko dalam
+                dunia digital.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+            data-aos-delay="400">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-show"></i></div>
+              <h4><a href="">Metates</a></h4>
+              <p>
+                Metates adalah ruang kreatif tempat pertunjukan digital,
+                galeri seni virtual, dan pengalaman budaya disajikan secara
+                futuristik.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Gedung Section -->
+    <section id="gallery" class="gallery bg-light py-5">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2 class="fw-bold ">Our Project</h2>
+          <!-- <p class="text-muted">Jelajahi berbagai ruang virtual yang kami hadirkan</p> -->
+        </div>
+
+        <!-- Filter Tabs -->
+        <ul class="nav nav-pills justify-content-center mb-4" id="gallery-filters">
+          <li class="nav-item">
+            <button class="nav-link active text-white bg-danger" data-filter="*">All</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-filter=".metacampus">Metacampus</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-filter=".metaschool">Metaschool</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-filter=".metaeducation">Metaeducation</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-filter=".vcommerce">V-Commerce</button>
+          </li>
+        </ul>
+
+
+        <!-- Gallery Items -->
+        <div class="row gallery-container g-4" data-aos="fade-up" data-aos-delay="100">
+
+          <!-- metacampus -->
+          <div class="col-lg-4 col-md-6 gallery-item metacampus">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/gallery/tekno.png" class="card-img-top" alt="Meta-Tekno" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">META-TEKNO</h5>
+                <p class="card-text text-muted">Learning space for future education</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/teknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/META-TEKNO-68259e59f734432bbfb0ad1e?share=647189754963369920"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metacampus">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/mall-tekno.jpg" class="card-img-top" alt="Meta-Tekno" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Mall Teknokrat Indonesia</h5>
+                <p class="card-text text-muted">Learning space for future education</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/tes1.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/Mall-Teknokrat-Indonesia-645e4ba7b39e26680851e75e?share=1944802212461214638"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 gallery-item metacampus">
+          <div class="card border-0 shadow h-100">
+            <img src="assets/img/project/ruang-informasi.jpg" class="card-img-top" alt="Meta-Tekno" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Ruang Informasi UTI</h5>
+              <p class="card-text text-muted">Learning space for future education</p>
+              <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/teknokrat.glb"
+                  data-title="META-TEKNO" data-description="Learning space for future education"
+                  data-link="https://example.com/spatial-link">
+                  <i class="bx bx-plus me-1"></i> 3D Preview
+                </button>
+                <a href="https://www.spatial.io/s/Metaverse-Ruang-Informasi-UTI-65f5374c1a175fbb3aeb6354?share=2604339570336923574"
+                  target="_blank" class="btn btn-danger btn-sm">
+                  View in Spatial
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- metaschool -->
+          <div class="col-lg-4 col-md-6 gallery-item metaschool">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/smk-alkautsar.jpg" class="card-img-top" alt="SMK AL-KAUTSAR" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">SMK AL-KAUTSAR</h5>
+                <p class="card-text text-muted">Metaschool virtual learning environment</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/SEKOLAH-SMA-AL-KAUTSAR-664496de680289231ac6ada2?share=2143212505836071532"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaschool">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/smk1-merbau.jpg" class="card-img-top" alt="SMK AL-KAUTSAR" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">SMK 1 Merbau Mataram</h5>
+                <p class="card-text text-muted">Metaschool virtual learning environment</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/SMK-1-Merbau-Mataram-66c74c75138624891ac07863?share=2155565741352133027"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaschool">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/smkn-spp.jpg" class="card-img-top" alt="SMK AL-KAUTSAR" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">SMKN SPP LAMPUNG</h5>
+                <p class="card-text text-muted">Metaschool virtual learning environment</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/SMKN-SPP-LAMPUNG-66abb85e5a4bd3cf6f86339d?share=3679409962158378043"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaschool">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/smp-azzahra.jpg" class="card-img-top" alt="SMK AL-KAUTSAR" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">SMP Azzahra</h5>
+                <p class="card-text text-muted">Metaschool virtual learning environment</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/SMP-Azzahra-66e5273fd9a79a340962518a?share=8831437309303499832"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaschool">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/sma-labschool.jpg" class="card-img-top" alt="SMK AL-KAUTSAR" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">SMA Lab School UPI</h5>
+                <p class="card-text text-muted">Metaschool virtual learning environment</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/SMA-Lab-School-UPI-66f56b1dc23d0d0c2a3d5302?share=2713573888761638795"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaschool">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/smkn1-negarabatin.jpg" class="card-img-top" alt="SMK AL-KAUTSAR" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">SMKN 1 Negara Batin</h5>
+                <p class="card-text text-muted">Metaschool virtual learning environment</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/SMKN-1-Negara-Batin-674bb4f17ae0d2e9ea74d9cc?share=4378193410158788043"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaschool">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/sman2-metro.jpg" class="card-img-top" alt="SMK AL-KAUTSAR" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">SMAN 2 Metro</h5>
+                <p class="card-text text-muted">Metaschool virtual learning environment</p>
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <button class="btn btn-outline-secondary btn-sm view-btn" data-model="assets/3d/skyteknokrat.glb"
+                    data-title="META-TEKNO" data-description="Learning space for future education"
+                    data-link="https://example.com/spatial-link">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </button>
+                  <a href="https://www.spatial.io/s/SMAN-2-Metro-6757f3c424d89ee715720d89?share=4150804468430241838"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- metaedu -->
+          <div class="col-lg-4 col-md-6 gallery-item metaeducation">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/museum-lampung.jpg" class="card-img-top" alt="MetaEducation Space" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Museum Lampung</h5>
+                <p class="card-text text-muted">Metaeducation exploration zone</p>
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                  <a href="assets/img/gallery/tekno3.png" class="btn btn-outline-secondary btn-sm gallery-lightbox">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </a>
+                  <a href="https://www.spatial.io/s/Museum-Lampung-2024-66666a9e6f9abd268c6346d0?share=432555706488230980"
+                  target="_blank" class="btn btn-danger btn-sm">
+                  View in Spatial
+                </a>                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaeducation">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/rumah-adat.jpg" class="card-img-top" alt="MetaEducation Space" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Rumah Adat Lampung</h5>
+                <p class="card-text text-muted">Metaeducation exploration zone</p>
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                  <a href="assets/img/gallery/tekno3.png" class="btn btn-outline-secondary btn-sm gallery-lightbox">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </a>
+                  <a href="https://www.spatial.io/s/Rumah-Adat-Lampung-Pepadun-66bf59f20da08901e7e066bc"
+                  target="_blank" class="btn btn-danger btn-sm">
+                  View in Spatial
+                </a>                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item metaeducation">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/museum-serambi.jpg" class="card-img-top" alt="MetaEducation Space" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Museum Serambi Malapura</h5>
+                <p class="card-text text-muted">Metaeducation exploration zone</p>
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                  <a href="assets/img/gallery/tekno3.png" class="btn btn-outline-secondary btn-sm gallery-lightbox">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </a>
+                  <a href="https://www.spatial.io/s/Pasar-Kreatif-dan-Seni-67569629bce99bc7f7b9241a?share=1789966570546314383"
+                  target="_blank" class="btn btn-danger btn-sm">
+                  View in Spatial
+                </a>                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- v-commerce -->
+          <div class="col-lg-4 col-md-6 gallery-item vcommerce">
+            <div class="card border-0 shadow h-100">
+              <img src="assets/img/project/pasar-seni.jpg" class="card-img-top" alt="MetaEducation Space" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Pasar Seni & Kreatif</h5>
+                <p class="card-text text-muted">Metaeducation exploration zone</p>
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                  <a href="assets/img/gallery/tekno3.png" class="btn btn-outline-secondary btn-sm gallery-lightbox">
+                    <i class="bx bx-plus me-1"></i> 3D Preview
+                  </a>
+                  <a href="https://www.spatial.io/s/Pasar-Kreatif-dan-Seni-67569629bce99bc7f7b9241a?share=1789966570546314383"
+                    target="_blank" class="btn btn-danger btn-sm">
+                    View in Spatial
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faqs" class="faq section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Frequently Asked Questions (FAQ)</h2>
+          <p>
+            Temukan jawaban atas pertanyaan umum seputar penggunaan platform
+            Metatekno 3D.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i>
+              <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Bagaimana cara menjelajahi
+                dunia virtual di Metatekno?
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                  Untuk menjelajahi dunia virtual Metatekno, cukup pilih
+                  lokasi atau area yang ingin Anda eksplorasi dari menu utama.
+                  Anda dapat bergerak bebas, berinteraksi dengan objek, dan
+                  menikmati pengalaman imersif dengan kontrol yang mudah
+                  digunakan.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i>
+              <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Apa yang dapat saya lakukan di
+                dunia virtual Metatekno?
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Di Metatekno, Anda dapat berinteraksi dengan berbagai objek,
+                  menjelajahi berbagai lokasi kampus dan area lainnya dalam
+                  dunia 3D, serta berkolaborasi dengan pengguna lain dalam
+                  ruang virtual.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i>
+              <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Apakah saya memerlukan
+                perangkat khusus untuk menggunakan
+                Metatekno? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Anda dapat mengakses Metatekno menggunakan perangkat
+                  komputer atau smartphone yang mendukung browser modern.
+                  Untuk pengalaman terbaik, kami menyarankan penggunaan
+                  perangkat dengan dukungan grafis tinggi dan koneksi internet
+                  stabil.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-help-circle icon-help"></i>
+              <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Apakah ada biaya untuk
+                mengakses Metatekno?
+                <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Saat ini, akses ke dunia virtual Metatekno sepenuhnya
+                  gratis. Platform ini menyediakan pengalaman eksplorasi 3D
+                  tanpa biaya untuk pengguna.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="500">
+              <i class="bx bx-help-circle icon-help"></i>
+              <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Fasilitas dan fitur apa saja
+                yang tersedia di dunia virtual
+                Metatekno? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Di Metatekno, Anda dapat menikmati berbagai fitur
+                  interaktif, seperti ruang kolaborasi virtual, objek 3D yang
+                  dapat diakses dan berinteraksi, serta peta kampus yang dapat
+                  dijelajahi secara imersif. Platform ini juga memungkinkan
+                  Anda untuk berkomunikasi dengan pengguna lain dalam ruang
+                  virtual.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Contact</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>
+                  Jl. ZA. Pagar Alam No.9 -11, Labuhan Ratu, Kec. Kedaton,
+                  Kota Bandar Lampung, Lampung 35132
+                </p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>metaverse@teknokrat.ac.id</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>085383020570 (Chat Only)</p>
+              </div>
+
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.226620207035!2d105.25562721476514!3d-5.382383996096008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40dadc7970b277%3A0x5b1fe57f83b6416c!2sUniversitas%20Teknokrat%20Indonesia!5e0!3m2!1sid!2sid!4v1684818511059!5m2!1sid!2sid"
+                width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required />
+              </div>
+              <div class="form-group">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">
+                  Your message has been sent. Thank you!
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Contact Section -->
+    <footer class="bg-dark text-light">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>About Us</h4>
+            <p>
+              Selamat datang di About Us MetaTekno! Kami adalah platform
+              inovatif yang didedikasikan untuk memfasilitasi peminjaman
+              ruangan di dalam kampus dengan mudah dan efisien.
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h4>Quick Links</h4>
+            <ul class="list-unstyled">
+              <li><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#faqs">FAQS</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h4>Contact Us</h4>
+            <ul class="list-unstyled">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> Jl. ZA. Pagar Alam No.9
+                -11
+              </li>
+              <li>
+                <i class="fas fa-phone"></i> Labuhan Ratu, Kec. Kedaton, Kota
+                Bandar Lampung
+              </li>
+              <li><i class="fas fa-envelope"></i> Lampung 35132</li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="text-center">
+          <p>Copyright &copy; 2023 MetaTekno - All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="modelPopup" style="
+  display: none; 
+  position: fixed; 
+  top: 0; left: 0; 
+  width: 100%; height: 100%; 
+  background: rgba(0, 0, 0, 0.7); 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease;
+">
+      <div style="
+    background: #fff; 
+    border-radius: 15px; 
+    padding: 30px 20px 25px; 
+    position: relative; 
+    width: 95%; 
+    max-width: 900px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  ">
+        <!-- Close Button -->
+        <button id="closePopup" style="
+      position: absolute; 
+      top: 15px; 
+      right: 15px; 
+      background: #dc3545; 
+      border-color: #dc3545; 
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-size: 14px; 
+      color: #fff; 
+      cursor: pointer;
+    ">
+          x
+        </button>
+
+        <!-- Title -->
+        <h3 id="popup-title" style="margin-top: 10px; font-size: 24px; color: #222;"></h3>
+
+        <!-- Description -->
+        <p id="popup-description" style="color: #555; margin-bottom: 20px;"></p>
+
+        <!-- 3D Canvas -->
+        <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
+          <canvas id="popup-canvas" style="width:100%; height:400px;"></canvas>
+        </div>
+
+        <!-- Link Button -->
+        <div style="text-align: right; margin-top: 25px;">
+          <a id="popup-link" href="#" target="_blank"
+            style="background: #e60023; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; transition: background 0.3s;">
+            🔗 View in Spatial
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <!-- End #main -->
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    function showPopup(modelPath, title, description, link) {
+      document.getElementById("modelPopup").style.display = "flex";
+      document.getElementById("popup-title").innerText = title;
+      document.getElementById("popup-description").innerText = description;
+      document.getElementById("popup-link").href = link;
+
+      const canvas = document.getElementById("popup-canvas");
+      canvas.innerHTML = ""; // Tidak berlaku untuk canvas, abaikan atau reset dengan ukuran
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        canvas.clientWidth / canvas.clientHeight,
+        0.1,
+        1000
+      );
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+      });
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+
+      const light = new THREE.AmbientLight(0xffffff, 0.8);
+      scene.add(light);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      directionalLight.position.set(5, 5, 5);
+
+      const pointLight = new THREE.PointLight(0x00bfff, 1, 100);
+      pointLight.position.set(-5, 2, 5);
+
+      scene.add(directionalLight);
+
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        modelPath,
+        function (gltf) {
+          const model = gltf.scene;
+          scene.add(model);
+          animate();
+        },
+        undefined,
+        function (error) {
+          console.error("Model load error:", error);
+        }
+      );
+
+      camera.position.z = 2;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+    }
+
+    document.querySelectorAll(".view-btn").forEach((button) => {
+      button.addEventListener("click", function () {
+        const model = this.getAttribute("data-model");
+        const title = this.getAttribute("data-title");
+        const description = this.getAttribute("data-description");
+        const link = this.getAttribute("data-link");
+        showPopup(model, title, description, link);
+      });
+    });
+
+    document
+      .getElementById("closePopup")
+      .addEventListener("click", function () {
+        document.getElementById("modelPopup").style.display = "none";
+      });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Init Isotope
+      var iso = new Isotope('.gallery-container', {
+        itemSelector: '.gallery-item',
+        layoutMode: 'fitRows'
+      });
+
+      // Filter items on button click
+      var filtersElem = document.querySelector('#gallery-filters');
+      filtersElem.addEventListener('click', function (event) {
+        if (!matchesSelector(event.target, 'button')) {
+          return;
+        }
+
+        // remove active class from all buttons
+        var buttons = filtersElem.querySelectorAll('.nav-link');
+        buttons.forEach(function (btn) {
+          btn.classList.remove('active', 'bg-danger', 'text-white');
+        });
+
+        // add active class to clicked button
+        event.target.classList.add('active', 'bg-danger', 'text-white');
+
+        var filterValue = event.target.getAttribute('data-filter');
+        iso.arrange({ filter: filterValue });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
