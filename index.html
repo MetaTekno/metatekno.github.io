@@ -49,13 +49,17 @@
       color: #fff;
       background-color: #dc3545;
     }
+
     .gallery-item {
-      display: none; /* Default hidden */
+      display: none;
+      /* Default hidden */
     }
-    
+
     .gallery-item.visible {
-      display: block; /* Only show those with 'visible' */
+      display: block;
+      /* Only show those with 'visible' */
     }
+
     /* Card UI Improvement */
     .gallery-item .card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -224,6 +228,34 @@
       color: #555;
       margin-top: 10px;
     }
+
+    /* Contact */
+    .social-icon {
+      color: #333;
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      transform: scale(1.2);
+    }
+    
+    .social-icon.instagram:hover {
+      color: #e1306c;
+    }
+    .social-icon.tiktok:hover {
+      color: #010101;
+    }
+    .social-icon.facebook:hover {
+      color: #1877f2;
+    }
+    .social-icon.youtube:hover {
+      color: #ff0000;
+    }
+    
+    .contact .info-box i {
+      min-width: 30px;
+      text-align: center;
+    }
+    
   </style>
 </head>
 
@@ -394,7 +426,12 @@
           <h2 class="fw-bold ">Our Project</h2>
           <!-- <p class="text-muted">Jelajahi berbagai ruang virtual yang kami hadirkan</p> -->
         </div>
-
+        <div class="row mb-3">
+          <div class="col-md-6 offset-md-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Cari berdasarkan judul...">
+          </div>
+        </div>
+        
         <!-- Filter Tabs -->
         <ul class="nav nav-pills justify-content-center mb-4" id="gallery-filters">
           <li class="nav-item">
@@ -463,7 +500,8 @@
 
           <div class="col-lg-4 col-md-6 gallery-item metacampus">
             <div class="card border-0 shadow h-100">
-              <img src="assets/img/project/universitas-muslim.jpg" class="card-img-top" alt="Universitas Muslim Indonesia" />
+              <img src="assets/img/project/universitas-muslim.jpg" class="card-img-top"
+                alt="Universitas Muslim Indonesia" />
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">Universitas Muslim Indonesia</h5>
                 <p class="card-text text-muted">Learning space for future education</p>
@@ -845,7 +883,7 @@
         <div class="text-center mt-4">
           <button id="loadMoreBtn" class="btn btn-outline-danger">Tampilkan Lebih Banyak</button>
         </div>
-        
+
     </section>
 
 
@@ -947,121 +985,68 @@
     <!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
+<!-- ======= Contact Section Redesigned ======= -->
+<section id="contact" class="contact text-dark py-5" style="background: linear-gradient(to bottom right, #f0f4ff, #ffffff);">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title text-center mb-5">
+      <h2 class="fw-bold">Hubungi Kami</h2>
+      <p class="text-muted">Tertarik dengan dunia Metatekno? Hubungi kami atau ikuti sosial media untuk tetap update dengan teknologi kampus masa depan!</p>
+    </div>
 
-        <div class="row">
-          <div class="col-lg-5 d-flex align-items-stretch">
-            <div class="info">
-              <div class="address">
-                <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>
-                  Jl. ZA. Pagar Alam No.9 -11, Labuhan Ratu, Kec. Kedaton,
-                  Kota Bandar Lampung, Lampung 35132
-                </p>
-              </div>
-
-              <div class="email">
-                <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
-                <p>metaverse@teknokrat.ac.id</p>
-              </div>
-
-              <div class="phone">
-                <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
-                <p>085383020570 (Chat Only)</p>
-              </div>
-
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.226620207035!2d105.25562721476514!3d-5.382383996096008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40dadc7970b277%3A0x5b1fe57f83b6416c!2sUniversitas%20Teknokrat%20Indonesia!5e0!3m2!1sid!2sid!4v1684818511059!5m2!1sid!2sid"
-                width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="row justify-content-center align-items-stretch g-4">
+      <!-- Contact Info -->
+      <div class="col-lg-5">
+        <div class="info-box bg-white p-4 rounded-4 shadow-sm h-100">
+          <div class="mb-4 d-flex align-items-start">
+            <i class="bi bi-geo-alt fs-4 text-primary me-3"></i>
+            <div>
+              <h6 class="fw-semibold mb-1">Alamat</h6>
+              <p class="mb-0">Jl. ZA. Pagar Alam No.9-11, Labuhan Ratu, Kedaton, Bandar Lampung, Lampung 35132</p>
             </div>
           </div>
-
-          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required />
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Your message has been sent. Thank you!
-                </div>
-              </div>
-              <div class="text-center">
-                <button type="submit">Send Message</button>
-              </div>
-            </form>
+          <div class="mb-4 d-flex align-items-start">
+            <i class="bi bi-envelope fs-4 text-danger me-3"></i>
+            <div>
+              <h6 class="fw-semibold mb-1">Email</h6>
+              <p class="mb-0">metaverse@teknokrat.ac.id</p>
+            </div>
+          </div>
+          <div class="mb-4 d-flex align-items-start">
+            <i class="bi bi-whatsapp fs-4 text-success me-3"></i>
+            <div>
+              <h6 class="fw-semibold mb-1">WhatsApp</h6>
+              <p class="mb-0">0853-8302-0570 (Chat Only)</p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+
+      <!-- Social Media Box -->
+      <div class="col-lg-5">
+        <div class="bg-white p-4 rounded-4 shadow-sm text-center h-100 d-flex flex-column justify-content-center">
+          <h5 class="fw-bold mb-3">Ikuti Kami di Sosial Media</h5>
+          <p class="text-muted mb-4">Dapatkan insight, event, dan inovasi terbaru langsung dari Metatekno!</p>
+          <div class="d-flex justify-content-center gap-4 fs-3">
+            <a href="https://instagram.com/metatekno" target="_blank" class="social-icon instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://tiktok.com/@metatekno" target="_blank" class="social-icon tiktok" title="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="https://facebook.com/metatekno" target="_blank" class="social-icon facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://youtube.com/@metatekno" target="_blank" class="social-icon youtube" title="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <!-- End Contact Section -->
     <footer class="bg-dark text-light">
-      <div class="container py-4">
-        <div class="row">
-          <div class="col-md-6">
-            <h4>About Us</h4>
-            <p>
-              Metatekno adalah platform interaktif berbasis metaverse yang menghadirkan eksplorasi kampus masa depan
-              secara virtual dan imersif. Kami menggabungkan teknologi 3D dan realitas digital untuk pengalaman belajar
-              tanpa batas.
-            </p>
-          </div>
-          <div class="col-md-3">
-            <h4>Quick Links</h4>
-            <ul class="list-unstyled">
-              <li><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#gallery">Project</a></li>
-              <li><a href="#faqs">FAQS</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h4>Contact Us</h4>
-            <ul class="list-unstyled">
-              <li>
-                <i class="fas fa-map-marker-alt"></i> Jl. ZA. Pagar Alam No.9
-                -11
-              </li>
-              <li>
-                <i class="fas fa-phone"></i> Labuhan Ratu, Kec. Kedaton, Kota
-                Bandar Lampung
-              </li>
-              <li><i class="fas fa-envelope"></i> Lampung 35132</li>
-            </ul>
-          </div>
-        </div>
-        <hr />
-        <div class="text-center">
-          <p>Copyright &copy; 2023 MetaTekno - All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+  <div class="container py-5">
+    <div class="row">    
+    <div class="text-center small text-muted">
+      &copy; 2025 MetaTekno. All rights reserved.
+    </div>
+  </div>
+</footer>
 
     <div id="modelPopup" style="
   display: none; 
@@ -1123,7 +1108,6 @@
         </div>
       </div>
     </div>
-
   </main>
   <!-- End #main -->
 
@@ -1219,43 +1203,73 @@
     document.addEventListener('DOMContentLoaded', function () {
       var iso = new Isotope('.gallery-container', {
         itemSelector: '.gallery-item',
-        layoutMode: 'fitRows'
-      });
-  
-      // Handle filtering
-      var filtersElem = document.querySelector('#gallery-filters');
-      filtersElem.addEventListener('click', function (event) {
-        if (!matchesSelector(event.target, 'button')) return;
-  
-        var buttons = filtersElem.querySelectorAll('.nav-link');
-        buttons.forEach(btn => btn.classList.remove('active', 'bg-danger', 'text-white'));
-        event.target.classList.add('active', 'bg-danger', 'text-white');
-  
-        var filterValue = event.target.getAttribute('data-filter');
-        iso.arrange({ filter: filterValue });
+        layoutMode: 'fitRows',
       });
   
       const allItems = document.querySelectorAll('.gallery-item');
+      const filtersElem = document.querySelector('#gallery-filters');
       const loadMoreBtn = document.getElementById('loadMoreBtn');
+      const searchInput = document.getElementById('searchInput');
+  
+      let activeFilter = '*';
       let visibleCount = 6;
       let allVisible = false;
   
-      function showItems() {
-        allItems.forEach((item, index) => {
-          if (index < visibleCount) {
-            item.classList.add('visible');
-          } else {
-            item.classList.remove('visible');
-          }
+      function getFilteredItems() {
+        return Array.from(allItems).filter(item => {
+          return activeFilter === '*' || item.classList.contains(activeFilter.substring(1));
         });
-        iso.arrange({ filter: '.visible' });
       }
   
-      showItems();
+      function applySearchFilter(items) {
+        const query = searchInput.value.toLowerCase();
+        return items.filter(item => {
+          const title = item.querySelector('.card-title')?.textContent.toLowerCase() || '';
+          return title.includes(query);
+        });
+      }
+  
+      function showItems() {
+        allItems.forEach(item => item.classList.remove('visible'));
+  
+        let itemsToShow = getFilteredItems();
+        itemsToShow = applySearchFilter(itemsToShow);
+  
+        itemsToShow.forEach((item, index) => {
+          if (index < visibleCount) {
+            item.classList.add('visible');
+          }
+        });
+  
+        iso.arrange({ filter: '.visible' });
+  
+        // Hide load more if filtered items are less
+        if (itemsToShow.length <= 6) {
+          loadMoreBtn.style.display = 'none';
+        } else {
+          loadMoreBtn.style.display = 'inline-block';
+        }
+      }
+  
+      filtersElem.addEventListener('click', function (event) {
+        if (!event.target.matches('button')) return;
+  
+        filtersElem.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active', 'bg-danger', 'text-white'));
+        event.target.classList.add('active', 'bg-danger', 'text-white');
+  
+        activeFilter = event.target.getAttribute('data-filter');
+        visibleCount = 6;
+        allVisible = false;
+        loadMoreBtn.innerText = "Tampilkan Lebih Banyak";
+  
+        showItems();
+      });
   
       loadMoreBtn.addEventListener('click', function () {
+        const filteredItems = applySearchFilter(getFilteredItems());
+  
         if (!allVisible) {
-          visibleCount = allItems.length;
+          visibleCount = filteredItems.length;
           allVisible = true;
           loadMoreBtn.innerText = "Tampilkan Lebih Sedikit";
         } else {
@@ -1263,18 +1277,27 @@
           allVisible = false;
           loadMoreBtn.innerText = "Tampilkan Lebih Banyak";
   
-          // Scroll ke section dengan ID "gallery"
           const section = document.getElementById("gallery");
           section.scrollIntoView({ behavior: 'smooth' });
         }
   
         showItems();
       });
+  
+      searchInput.addEventListener('input', () => {
+        visibleCount = 6;
+        allVisible = false;
+        loadMoreBtn.innerText = "Tampilkan Lebih Banyak";
+        showItems();
+      });
+  
+      showItems(); // Initial render
     });
   </script>
   
-  
-  
+
+
+
 
 
 </body>
